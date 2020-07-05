@@ -10,11 +10,30 @@ apt-get update -qq \
   && apt-get install -y --no-install-recommends \
     curl \
     gnupg2 \
+    default-jdk \
+    fonts-wqy-zenhei \
+    libglu1-mesa-dev \
+    libgit2-dev \
+    libgl1-mesa-dev  \
+    libhiredis-dev \
+    libsodium-dev \
+    tdsodbc \
+    libsqliteodbc \
+    odbc-postgresql \
     unixodbc \
     unixodbc-dev \
-    libsodium-dev \
-    libhiredis-dev \
-    default-jdk
+    xtail \
+    libudunits2-dev \
+    libgdal-dev \
+    libgeos-dev \
+    libproj-dev \
+    libjq-dev \
+    libprotobuf-dev \
+    protobuf-compiler \
+    unzip \
+    xvfb \
+    libxi6 \
+    libgconf-2-4
   
 R CMD javareconf
 
