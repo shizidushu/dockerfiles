@@ -32,5 +32,5 @@ if(length(new_packages)) install.packages(new_packages, repo = 'https://cran.rst
 # update old packages
 ## install.packages(attr(old.packages(), "dimnames")[[1]], repo = 'https://cran.rstudio.com/')
 
-devtools::install_github("trestletech/plumber")
-devtools::install_github('shizidushu/hfun')
+remotes::install_github("rstudio/plumber")
+remotes::install_github("shizidushu/hfun")
