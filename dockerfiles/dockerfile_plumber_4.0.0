@@ -3,9 +3,7 @@ FROM rocker/r-ver:4.0.0
 
 COPY scripts /shell_scripts
 
-RUN ls -l /shell_scripts
-
-RUN chmod +rx /shell_scripts/install_mssql_driver.sh
+RUN chmod -R +x /shell_scripts
 
 RUN ls -l /shell_scripts
 
