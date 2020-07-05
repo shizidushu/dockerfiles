@@ -12,6 +12,8 @@ RUN groupadd --gid 119 docker \
 COPY scripts /shell_scripts
 RUN chmod -R +rx /shell_scripts
 
+RUN /shell_scripts/install_r.sh
+
 RUN /shell_scripts/install_sys_deps.sh
 RUN /shell_scripts/install_mssql_driver.sh
 
@@ -23,7 +25,7 @@ ENV JULIA_PATH /usr/local/julia
 ENV PATH $JULIA_PATH/bin:$PATH
 RUN /shell_scripts/install_julia.sh
 
-RUN /shell_scripts/install_r.sh
+
 RUN wget -O - https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_tidyverse.sh | bash
 RUN Rscript /shell_scripts/install_basic_r_pkgs.R
 
