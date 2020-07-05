@@ -27,8 +27,6 @@ apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F9
 ## Now install R and littler, and create a link for littler in /usr/local/bin
 apt-get update \
   && apt-get install -t buster-cran40 -y --no-install-recommends \
-    gcc-9-base \
-    libopenblas0-pthread \
     littler \
     r-cran-littler \
     r-base \
