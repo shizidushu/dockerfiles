@@ -8,6 +8,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 apt-get update -qq \
   && apt-get install -y --no-install-recommends \
-    curl
+    curl \
+    gnupg2
 
 rm -rf /var/lib/apt/lists/*
