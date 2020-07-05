@@ -16,6 +16,6 @@ apt-get update -qq \
     libhiredis-dev \
     default-jdk
   
-R CMD javarecon
+R CMD javareconf
 
 rm -rf /var/lib/apt/lists/*
