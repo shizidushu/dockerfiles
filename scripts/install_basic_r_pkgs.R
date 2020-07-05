@@ -17,10 +17,10 @@ list_of_packages <- c("arrow", "config", "data.table", "DT", "fst", "future", "g
                       "ggthemes", "glue", "htmltools", "htmlwidgets", "httpuv", "jose", 
                       "JuliaCall", "knitr", "loggit", "mailR", "odbc", "openxlsx", 
                       "optparse", "patchwork", "plotly", "pool", "readxl", "rebus", 
-                      "redux", "reticulate", "rlist", "RMariaDB", "rmarkdown", "RPostgreSQL", 
+                      "redux", "reticulate", "rJava", "rlist", "RMariaDB", "rmarkdown", "RPostgreSQL", 
                       "sjmisc", "snakecase", "tidyverse", "wordcloud2", "writexl", 
                       "XML")
-                      
+
 # dput(sort(unique(list_of_packages)))
 
 list_of_packages <- unique(list_of_packages)
@@ -33,4 +33,4 @@ if(length(new_packages)) install.packages(new_packages, repo = 'https://cran.rst
 ## install.packages(attr(old.packages(), "dimnames")[[1]], repo = 'https://cran.rstudio.com/')
 
 devtools::install_github("trestletech/plumber")
-# devtools::install_github('shizidushu/hfun')
+devtools::install_github('shizidushu/hfun')
