@@ -9,6 +9,7 @@ RUN groupadd --gid 119 docker \
     && cd / \
     && mkdir -p /tmp
 
+RUN wget -O - https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_R.sh | bash
 
 COPY scripts /shell_scripts
 RUN chmod -R +rx /shell_scripts
@@ -25,7 +26,6 @@ ENV PATH $JULIA_PATH/bin:$PATH
 RUN /shell_scripts/install_julia.sh
 
 
-RUN wget -O - https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_R.sh | bash
 RUN wget -O - https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_tidyverse.sh | bash
 RUN Rscript /shell_scripts/install_basic_r_pkgs.R
 
