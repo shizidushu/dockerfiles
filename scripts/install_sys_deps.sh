@@ -10,6 +10,7 @@ apt-get update -qq \
   && apt-get install -y --no-install-recommends \
     curl \
     gnupg2 \
+    unixodbc \
     unixodbc-dev
 
 rm -rf /var/lib/apt/lists/*
