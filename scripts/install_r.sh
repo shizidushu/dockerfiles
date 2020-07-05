@@ -1,82 +1,159 @@
-CRAN=${CRAN:-https://cran.rstudio.com}
+#!/bin/bash
+set -e
+
+apt-get update && apt-get -y install lsb-release
+
+
+R_VERSION=4.0.0
+DEBIAN_VERSION=${DEBIAN_VERSION:-`lsb_release -sc`}
+LANG=${LANG:-en_US.UTF-8}
+LC_ALL=${LC_ALL:-en_US.UTF-8}
+CRAN=${CRAN:-https://cran.r-project.org}
+
+##  mechanism to force source installs if we're using RSPM
+CRAN_SOURCE=${CRAN/"__linux__/$DEBIAN_VERSION"/""}
+
+export DEBIAN_FRONTEND=noninteractive
+
+# Set up and install R
+R_HOME=${R_HOME:-/usr/local/lib/R}
 
 
 apt-get update \
-	&& apt-get install -y --no-install-recommends \
-    ca-certificates \
-    ed \
-    fonts-texgyre \
-    g++ \
-    gfortran \
-    less \
-    libblas-dev \
-    libbz2-* \
-    libcurl4 \
-    libicu* \
-    libjpeg-turbo* \
-    liblzma* \
-    libncurses5-dev \
-    libpangocairo-* \
-    libpcre2* \
-    libpng16* \
-    libreadline-dev \
-    libtiff* \
-    locales \
-    locales \
-    make \
-    unzip \
-    vim-tiny \
-    wget \
-    xauth
-    zip \
+  && apt-get install -y --no-install-recommends \
+    bash-completion \
+    ca-certificates \
+    devscripts \
+    file \
+    fonts-texgyre \
+    g++ \
+    gfortran \
+    gsfonts \
+    libblas-dev \
+    libbz2-* \
+    libcurl4 \
+    libicu* \
+    libpcre2* \
+    libjpeg-turbo* \
+    libopenblas-dev \
+    libpangocairo-* \
+    libpng16* \
+    libreadline-dev \
+    libtiff* \
+    liblzma* \
+    locales \
+    make \
+    unzip \
+    zip \
     zlib1g
 
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+locale-gen en_US.utf8
+/usr/sbin/update-locale LANG=en_US.UTF-8
+
+BUILDDEPS="curl \
+    default-jdk \
+    libbz2-dev \
+    libcairo2-dev \
+    libcurl4-openssl-dev \
+    libpango1.0-dev \
+    libjpeg-dev \
+    libicu-dev \
+    libpcre2-dev \
+    libpng-dev \
+    libreadline-dev \
+    libtiff5-dev \
+    liblzma-dev \
+    libx11-dev \
+    libxt-dev \
+    perl \
+    rsync \
+    subversion \
+    tcl-dev \
+    tk-dev \
+    texinfo \
+    texlive-extra-utils \
+    texlive-fonts-recommended \
+    texlive-fonts-extra \
+    texlive-latex-recommended \
+    texlive-latex-extra \
+    x11proto-core-dev \
+    xauth \
+    xfonts-base \
+    xvfb \
+    wget \
+    zlib1g-dev"
+
+apt-get install -y --no-install-recommends $BUILDDEPS
 
 
-## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
-echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
-	&& locale-gen en_US.utf8 \
-	&& /usr/sbin/update-locale LANG=en_US.UTF-8
+if [[ "$R_VERSION" == "devel" ]]; then                               \
+    wget https://stat.ethz.ch/R/daily/R-devel.tar.gz;                \
+elif [[ "$R_VERSION" == "patched" ]]; then                           \
+    wget https://stat.ethz.ch/R/daily/R-patched.tar.gz;              \
+else                                                                 \
+    wget https://cran.r-project.org/src/base/R-3/R-${R_VERSION}.tar.gz || \
+    wget https://cran.r-project.org/src/base/R-4/R-${R_VERSION}.tar.gz; \
+fi &&                                                                \
+    tar xzf R-${R_VERSION}.tar.gz &&   
+
+cd R-${R_VERSION}
+R_PAPERSIZE=letter \
+R_BATCHSAVE="--no-save --no-restore" \
+R_BROWSER=xdg-open \
+PAGER=/usr/bin/pager \
+PERL=/usr/bin/perl \
+R_UNZIPCMD=/usr/bin/unzip \
+R_ZIPCMD=/usr/bin/zip \
+R_PRINTCMD=/usr/bin/lpr \
+LIBnn=lib \
+AWK=/usr/bin/awk \
+CFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
+CXXFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
+./configure --enable-R-shlib \
+		   --enable-memory-profiling \
+		   --with-readline \
+		   --with-blas \
+		   --with-lapack \
+		   --with-tcltk \
+		   --disable-nls \
+		   --with-recommended-packages
+make
+make install
+make clean
+
+## Add a default CRAN mirror
+echo "options(repos = c(CRAN = '${CRAN}'), download.file.method = 'libcurl')" >> ${R_HOME}/etc/Rprofile.site
+
+## Set HTTPUserAgent for RSPM (https://github.com/rocker-org/rocker/issues/400)
+echo  'options(HTTPUserAgent = sprintf("R/%s R (%s)", getRversion(), 
+                 paste(getRversion(), R.version$platform, 
+                       R.version$arch, R.version$os)))' >> ${R_HOME}/etc/Rprofile.site
 
 
-
-## Use Debian unstable via pinning -- new style via APT::Default-Release
-echo "deb http://cloud.r-project.org/bin/linux/debian buster-cran40/" > /etc/apt/sources.list
-
-apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF'
-
-## Now install R and littler, and create a link for littler in /usr/local/bin
-apt-get update \
-  && apt-get install -t buster-cran40 -y --no-install-recommends \
-    littler \
-    r-cran-littler \
-    r-base \
-    r-base-dev \
-    r-recommended \
-&& ln -s /usr/lib/R/site-library/littler/examples/install.r /usr/local/bin/install.r \
-&& ln -s /usr/lib/R/site-library/littler/examples/install2.r /usr/local/bin/install2.r \
-&& ln -s /usr/lib/R/site-library/littler/examples/installBioc.r /usr/local/bin/installBioc.r \
-&& ln -s /usr/lib/R/site-library/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
-&& ln -s /usr/lib/R/site-library/littler/examples/testInstalled.r /usr/local/bin/testInstalled.r \
-&& install.r docopt \
-&& rm -rf /tmp/downloaded_packages/ /tmp/*.rds \
-&& rm -rf /var/lib/apt/lists/*
-
-R --version
+## Add a library directory (for user-installed packages)
+mkdir -p ${R_HOME}/site-library
+chown root:staff ${R_HOME}/site-library
+chmod g+ws ${R_HOME}/site-library
 
 ## Fix library path
-sed -i '/^R_LIBS_USER=.*$/d' /usr/local/lib/R/etc/Renviron \
-  && echo "R_LIBS_USER=\${R_LIBS_USER-'/usr/local/lib/R/site-library'}" >> /usr/local/lib/R/etc/Renviron \
-  && echo "R_LIBS=\${R_LIBS-'/usr/local/lib/R/site-library:/usr/local/lib/R/library:/usr/lib/R/library'}" >> /usr/local/lib/R/etc/Renviron
+echo "R_LIBS=\${R_LIBS-'${R_HOME}/site-library:${R_HOME}/library'}" >> ${R_HOME}/etc/Renviron
 
-## Set configured CRAN mirror
-echo "options(repos = c(CRAN='$CRAN'), download.file.method = 'libcurl')" >> /usr/local/lib/R/etc/Rprofile.site
+## Use littler installation scripts
+Rscript -e "install.packages(c('littler', 'docopt'), repos='${CRAN_SOURCE}')"
+ln -s ${R_HOME}/site-library/littler/examples/install2.r /usr/local/bin/install2.r
+ln -s ${R_HOME}/site-library/littler/examples/installGithub.r /usr/local/bin/installGithub.r
+ln -s ${R_HOME}/site-library/littler/bin/r /usr/local/bin/r
 
 
 ## Clean up from R source install
-cd / \
-  && rm -rf /tmp/* \
-  && apt-get remove --purge -y $BUILDDEPS \
-  && apt-get autoremove -y \
-  && apt-get autoclean -y \
-  && rm -rf /var/lib/apt/lists/*
+cd /
+rm -rf /tmp/*
+rm -rf R-${R_VERSION}
+rm -rf R-${R_VERSION}.tar.gz
+apt-get remove --purge -y $BUILDDEPS
+apt-get autoremove -y
+apt-get autoclean -y
+rm -rf /var/lib/apt/lists/*
+
+
