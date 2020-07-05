@@ -1,4 +1,3 @@
-R_VERSION=${R_VERSION:-4.0.0}
 CRAN=${CRAN:-https://cran.rstudio.com}
 
 
@@ -21,19 +20,19 @@ echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 
 ## Use Debian unstable via pinning -- new style via APT::Default-Release
 echo "deb http://http.debian.net/debian sid main" > /etc/apt/sources.list.d/debian-unstable.list \
-      && echo 'APT::Default-Release "testing";' > /etc/apt/apt.conf.d/default
+  && echo 'APT::Default-Release "testing";' > /etc/apt/apt.conf.d/default
 
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
 apt-get update \
-      && apt-get install -t unstable -y --no-install-recommends \
-              gcc-9-base \
-              libopenblas0-pthread \
-              littler \
-              r-cran-littler \
-  r-base=${R_VERSION}-* \
-  r-base-dev=${R_VERSION}-* \
-  r-recommended=${R_VERSION}-* \
+  && apt-get install -t unstable -y --no-install-recommends \
+    gcc-9-base \
+    libopenblas0-pthread \
+    littler \
+    r-cran-littler \
+    r-base \
+    r-base-dev \
+    r-recommended \
 && ln -s /usr/lib/R/site-library/littler/examples/install.r /usr/local/bin/install.r \
 && ln -s /usr/lib/R/site-library/littler/examples/install2.r /usr/local/bin/install2.r \
 && ln -s /usr/lib/R/site-library/littler/examples/installBioc.r /usr/local/bin/installBioc.r \
@@ -42,6 +41,8 @@ apt-get update \
 && install.r docopt \
 && rm -rf /tmp/downloaded_packages/ /tmp/*.rds \
 && rm -rf /var/lib/apt/lists/*
+
+R --version
 
 ## Fix library path
 sed -i '/^R_LIBS_USER=.*$/d' /usr/local/lib/R/etc/Renviron \
