@@ -24,6 +24,7 @@ apt-get update -qq \
     unixodbc \
     unixodbc-dev \
     xtail \
+    libcurl4-openssl-dev \
     libudunits2-dev \
     libgdal-dev \
     libgeos-dev \
