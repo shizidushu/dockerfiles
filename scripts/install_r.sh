@@ -10,7 +10,14 @@ apt-get update \
 		wget \
 		ca-certificates \
 		fonts-texgyre \
-    g++
+    g++ \
+    gfortran \
+    libblas-dev \
+    libncurses5-dev \
+    libreadline-dev \
+    libpcre2-dev \
+    libbz2-dev \
+    xauth
 
 
 ## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
