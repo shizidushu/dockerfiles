@@ -23,7 +23,7 @@ ENV JULIA_PATH /usr/local/julia
 ENV PATH $JULIA_PATH/bin:$PATH
 RUN /shell_scripts/install_julia.sh
 
-RUN wget -O - https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_R.sh | bash
+RUN /shell_scripts/install_r.sh
 RUN wget -O - https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_tidyverse.sh | bash
 RUN Rscript /shell_scripts/install_basic_r_pkgs.R
 
