@@ -3,21 +3,34 @@ CRAN=${CRAN:-https://cran.rstudio.com}
 
 apt-get update \
 	&& apt-get install -y --no-install-recommends \
-		ed \
-		less \
-		locales \
-		vim-tiny \
-		wget \
-		ca-certificates \
-		fonts-texgyre \
-    g++ \
-    gfortran \
-    libblas-dev \
-    libncurses5-dev \
-    libreadline-dev \
-    libpcre2-dev \
-    libbz2-dev \
+    ca-certificates \
+    ed \
+    fonts-texgyre \
+    g++ \
+    gfortran \
+    less \
+    libblas-dev \
+    libbz2-* \
+    libcurl4 \
+    libicu* \
+    libjpeg-turbo* \
+    liblzma* \
+    libncurses5-dev \
+    libpangocairo-* \
+    libpcre2* \
+    libpng16* \
+    libreadline-dev \
+    libtiff* \
+    locales \
+    locales \
+    make \
+    unzip \
+    vim-tiny \
+    wget \
     xauth
+    zip \
+    zlib1g
+
 
 
 ## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
