@@ -38,6 +38,6 @@ apt-get update -qq \
     libgconf-2-4 \
     wget
   
-# R CMD javareconf
+R CMD javareconf
 
 rm -rf /var/lib/apt/lists/*
