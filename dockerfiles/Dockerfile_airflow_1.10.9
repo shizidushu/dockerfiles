@@ -13,6 +13,8 @@ RUN groupadd --gid 119 docker \
 COPY scripts /shell_scripts
 RUN chmod -R +rx /shell_scripts
 
+RUN pip install client
+
 RUN pip install -r /shell_scripts/requirements_airflow.txt
 
 
