@@ -5,7 +5,7 @@ COPY scripts /shell_scripts
 
 RUN ls -l /shell_scripts
 
-RUN chmod +rx /shell_scripts
+RUN chmod +rx /shell_scripts/install_mssql_driver.sh
 
 RUN ls -l /shell_scripts
 
