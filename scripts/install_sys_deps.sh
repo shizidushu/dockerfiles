@@ -33,6 +33,7 @@ apt-get update -qq \
     libprotobuf-dev \
     protobuf-compiler \
     libssl-dev \
+    libbz2-dev \
     unzip \
     xvfb \
     libxi6 \
