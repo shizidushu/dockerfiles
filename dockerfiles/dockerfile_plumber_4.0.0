@@ -5,9 +5,11 @@ COPY scripts /shell_scripts
 RUN chmod -R +x /shell_scripts
 
 
+
 RUN /rocker_scripts/install_tidyverse.sh
 RUN /rocker_scripts/install_python.sh
 
+RUN /shell_scripts/install_sys_deps.sh
 RUN /shell_scripts/install_julia.sh
 RUN /shell_scripts/install_mssql_driver.sh
 

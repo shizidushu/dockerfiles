@@ -13,4 +13,4 @@ mkdir "$JULIA_PATH"
 tar -xzf julia.tar.gz -C "$JULIA_PATH" --strip-components 1
 rm julia.tar.gz
 julia --version
-echo "options(JULIA_HOME='$JULIA_PATH/bin/')" >> /usr/local/lib/R/etc/Rprofile.site
+# echo "options(JULIA_HOME='$JULIA_PATH/bin/')" >> /usr/local/lib/R/etc/Rprofile.site
