@@ -6,6 +6,7 @@ COPY scripts /shell_scripts
 
 RUN /rocker_scripts/install_tidyverse.sh
 
+RUN /shell_scripts/install_mssql_driver.sh
 
 
 
