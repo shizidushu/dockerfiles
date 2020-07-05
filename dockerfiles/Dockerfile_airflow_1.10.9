@@ -21,9 +21,9 @@ RUN /shell_scripts/install_mssql_driver.sh
 RUN pip3 install -r /shell_scripts/requirements_airflow.txt
 
 
-ENV JULIA_PATH /usr/local/julia
-ENV PATH $JULIA_PATH/bin:$PATH
-RUN /shell_scripts/install_julia.sh
+# ENV JULIA_PATH /usr/local/julia
+# ENV PATH $JULIA_PATH/bin:$PATH
+# RUN /shell_scripts/install_julia.sh
 
 
 RUN Rscript /shell_scripts/install_basic_r_pkgs.R
