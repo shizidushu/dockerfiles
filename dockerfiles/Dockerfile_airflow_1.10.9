@@ -1,0 +1,31 @@
+FROM puckel/docker-airflow:1.10.9
+
+USER root
+
+RUN groupadd --gid 119 docker \
+    && usermod -aG docker airflow \
+    # fix jdk https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199
+    && mkdir -p /usr/share/man/man1 \
+    && cd / \
+    && mkdir -p /tmp
+
+RUN pip install -r /shell_scripts/requirements_airflow.txt
+
+
+
+COPY scripts /shell_scripts
+RUN chmod -R +rx /shell_scripts
+
+
+RUN /shell_scripts/install_sys_deps.sh
+RUN /shell_scripts/install_mssql_driver.sh
+
+ENV JULIA_PATH /usr/local/julia
+ENV PATH $JULIA_PATH/bin:$PATH
+RUN /shell_scripts/install_julia.sh
+
+
+RUN wget -O - https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_R.sh | bash
+RUN wget -O - https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_tidyverse.sh | bash
+RUN Rscript /shell_scripts/install_basic_r_pkgs.R
+

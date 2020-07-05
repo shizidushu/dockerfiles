@@ -1,0 +1,13 @@
+wheel
+client
+pyodbc
+numpy
+scipy
+pandas
+sqlalchemy
+requests
+docker
+bcrypt
+flask-bcrypt
+suds==0.4
+suds-jurko==0.6

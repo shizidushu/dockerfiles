@@ -8,6 +8,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 apt-get update -qq \
   && apt-get install -y --no-install-recommends \
+    apt-transport-https \
     curl \
     gnupg2 \
     default-jdk \
