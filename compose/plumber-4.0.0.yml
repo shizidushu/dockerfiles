@@ -4,4 +4,4 @@ services:
     image: shizidushu/plumber:4.0.0
     build:
       context: ..
-      dockerfile: dockerfiles/Dockerfile_plumber_4.0.0
+      dockerfile: dockerfiles/dockerfile_plumber_4.0.0
