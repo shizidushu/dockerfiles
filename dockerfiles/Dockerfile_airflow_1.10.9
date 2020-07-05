@@ -13,13 +13,12 @@ RUN groupadd --gid 119 docker \
 COPY scripts /shell_scripts
 RUN chmod -R +rx /shell_scripts
 
-RUN pip install client
+RUN /shell_scripts/install_sys_deps.sh
+RUN /shell_scripts/install_mssql_driver.sh
+
 
 RUN pip install -r /shell_scripts/requirements_airflow.txt
 
-
-RUN /shell_scripts/install_sys_deps.sh
-RUN /shell_scripts/install_mssql_driver.sh
 
 ENV JULIA_PATH /usr/local/julia
 ENV PATH $JULIA_PATH/bin:$PATH
