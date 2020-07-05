@@ -1,4 +1,4 @@
-name: Build & Push Plumber images 
+name: Build & Push Airflow images 
 
 on: [push]
 #  release:
@@ -13,6 +13,6 @@ jobs:
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
       - name: Build the tagged Docker image
         run: | 
-             docker-compose -f compose/plumber-1.10.9.yml build 
+             docker-compose -f compose/airflow-1.10.9.yml build 
       - name: Push the tagged Docker image
-        run: docker-compose  -f compose/plumber-1.10.9.yml push
+        run: docker-compose  -f compose/airflow-1.10.9.yml push
