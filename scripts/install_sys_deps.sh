@@ -12,6 +12,7 @@ apt-get update -qq \
     gnupg2 \
     unixodbc \
     unixodbc-dev \
-    libsodium-dev
+    libsodium-dev \
+    libhiredis-dev
 
 rm -rf /var/lib/apt/lists/*
