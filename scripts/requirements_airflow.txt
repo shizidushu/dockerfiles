@@ -1,5 +1,5 @@
 bcrypt
-client==0.0.1
+client
 docker
 flask-bcrypt
 numpy
@@ -8,5 +8,5 @@ pyodbc
 requests
 scipy
 sqlalchemy
-suds>=0.4,<0.7 ; python_version < '3'
-suds-jurko ; python_version >= '3.0'
+suds-py3
+suds-jurko
