@@ -8,6 +8,9 @@ RUN chmod -R +x /shell_scripts
 RUN /rocker_scripts/install_tidyverse.sh
 RUN /shell_scripts/install_mssql_driver.sh
 
+RUN /rocker_scripts/install_python.sh
+
+RUN Rscript -e /rocker_scripts/install_basic_r_pkgs.R
 
 ## run R plumber with the last supplied CMD as supplied file
 ENTRYPOINT ["R", "-e", "pr <- plumber::plumb(rev(commandArgs())[1]); pr$run(host='0.0.0.0', port=8000, swagger=TRUE)"]
