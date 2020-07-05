@@ -1,0 +1,7 @@
+version: '3'
+services:
+  verse-4.0.0:
+    image: shizidushu/verse:4.0.0
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile_verse_4.0.0
