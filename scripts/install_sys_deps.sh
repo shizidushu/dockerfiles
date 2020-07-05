@@ -13,6 +13,9 @@ apt-get update -qq \
     unixodbc \
     unixodbc-dev \
     libsodium-dev \
-    libhiredis-dev
+    libhiredis-dev \
+    default-jdk
+  
+R CMD javarecon
 
 rm -rf /var/lib/apt/lists/*
