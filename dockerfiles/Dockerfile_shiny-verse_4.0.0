@@ -7,5 +7,5 @@ RUN chmod -R +rx /shell_scripts
 RUN /shell_scripts/install_sys_deps.sh
 
 RUN /shell_scripts/install_mssql_driver.sh
-RUN Rscript /rocker_scripts/install_basic_r_pkgs.R
-RUN Rscript /rocker_scripts/install_shiny_r_pkgs.R
+RUN Rscript /shell_scripts/install_basic_r_pkgs.R
+RUN Rscript /shell_scripts/install_shiny_r_pkgs.R
