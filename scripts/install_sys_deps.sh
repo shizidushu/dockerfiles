@@ -38,6 +38,7 @@ apt-get update -qq \
     xvfb \
     libxi6 \
     libgconf-2-4 \
+    libpcre2-dev \
     wget
   
 R CMD javareconf
