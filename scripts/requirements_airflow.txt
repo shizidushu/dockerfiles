@@ -4,6 +4,7 @@ docker
 flask-bcrypt
 numpy
 pandas
+mlxtend
 pyodbc
 requests
 scipy
