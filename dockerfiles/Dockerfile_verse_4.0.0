@@ -7,10 +7,12 @@ RUN /shell_scripts/install_sys_deps.sh
 
 
 ENV JULIA_PATH /usr/local/julia
-ENV PATH $JULIA_PATH/bin:$PATH
+ENV PATH=$JULIA_PATH/bin:$PATH
 RUN /shell_scripts/install_julia.sh
 
 RUN /shell_scripts/install_mssql_driver.sh
+
+ENV PATH=/opt/ghc/8.10.1/bin:$PATH
 RUN /shell_scripts/install_haskell.sh
 RUN Rscript /shell_scripts/install_basic_r_pkgs.R
 RUN Rscript /shell_scripts/install_rstudio_r_pkgs.R
