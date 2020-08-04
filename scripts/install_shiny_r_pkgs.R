@@ -10,7 +10,7 @@ if (!require(remotes)) {
 if (!require(devtools)) install.packages("devtools", repo = 'https://cran.rstudio.com/')
 
 # -shiny
-list_of_packages <- c("promises", "shinydashboard", "shinyWidgets",  "shinyjs", "shinyTime", "listviewer")
+list_of_packages <- c("promises", "shinydashboard", "shinyWidgets",  "shinyjs", "shinyTime", "listviewer", "gt")
 
 # dput(sort(unique(list_of_packages)))
 
@@ -24,4 +24,3 @@ if(length(new_packages)) install.packages(new_packages, repo = 'https://cran.rst
 ## install.packages(attr(old.packages(), "dimnames")[[1]], repo = 'https://cran.rstudio.com/')
 
 remotes::install_github('bbc/bbplot')
-remotes::install_github("rstudio/gt")
