@@ -1,4 +1,4 @@
-name: Build & Push Airflow images 
+name: Build & Push Airflow 1.10.11 images 
 
 on: [push]
 #  release:
