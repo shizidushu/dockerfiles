@@ -1,4 +1,4 @@
-FROM puckel/docker-airflow:1.10.9
+FROM apache/airflow:1.10.11-python3.7
 
 USER root
 
@@ -29,4 +29,4 @@ RUN pip3 install -r /shell_scripts/requirements_airflow.txt
 
 RUN Rscript /shell_scripts/install_basic_r_pkgs.R
 
-USER airflow
+USER ${AIRFLOW_UID}
