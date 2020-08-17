@@ -43,4 +43,6 @@ apt-get update -qq \
   
 R CMD javareconf
 
+apt-get install -y libpoppler-cpp-dev
+
 rm -rf /var/lib/apt/lists/*
