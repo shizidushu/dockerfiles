@@ -1,0 +1,44 @@
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.8
+
+
+COPY scripts /shell_scripts
+RUN chmod -R +rx /shell_scripts
+
+# install SQL Server drivers and tools
+### https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server    
+### https://github.com/Microsoft/mssql-docker/blob/master/linux/mssql-tools/Dockerfile
+
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+  && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list > /etc/apt/sources.list.d/mssql-release.list \
+  && apt-get update \
+  && ACCEPT_EULA=Y apt-get -y install msodbcsql17 \
+  && ACCEPT_EULA=Y apt-get -y install mssql-tools
+
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    pandoc \
+    unixodbc-dev \
+    g++ \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/
+
+RUN pip3 install -r /shell_scripts/requirements_fastapi.txt
+
+
+# For development, Jupyter remote kernel, Hydrogen
+# Using inside the container:
+# jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.custom_display_url=http://127.0.0.1:8888
+ARG INSTALL_JUPYTER=false
+RUN bash -c "if [ $INSTALL_JUPYTER == 'true' ] ; then pip install jupyterlab ; fi"
+
+
+
+
+# COPY ./app /app
+WORKDIR /app/
+
+ENV PYTHONPATH=/app
+
+EXPOSE 8888
+EXPOSE 80

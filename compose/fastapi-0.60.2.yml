@@ -1,0 +1,7 @@
+version: '3'
+services:
+  fastapi-0.60.2:
+    image: shizidushu/fastapi:0.60.2
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile_fastapi_0.60.2
