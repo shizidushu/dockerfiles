@@ -13,3 +13,4 @@ suds-py3
 suds-jurko
 openpyxl
 pdfplumber
+typer
