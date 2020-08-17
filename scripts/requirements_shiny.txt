@@ -1,0 +1,15 @@
+bcrypt
+client
+docker
+flask-bcrypt
+numpy
+pandas
+mlxtend
+pyodbc
+requests
+scipy
+sqlalchemy
+suds-py3
+suds-jurko
+openpyxl
+pdfplumber

@@ -9,3 +9,4 @@ RUN /shell_scripts/install_sys_deps.sh
 RUN /shell_scripts/install_mssql_driver.sh
 RUN Rscript /shell_scripts/install_basic_r_pkgs.R
 RUN Rscript /shell_scripts/install_shiny_r_pkgs.R
+RUN pip3 install -r /shell_scripts/requirements_shiny.txt
