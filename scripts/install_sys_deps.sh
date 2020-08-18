@@ -43,6 +43,7 @@ apt-get update -qq \
   
 R CMD javareconf
 
-apt-get install -y libpoppler-cpp-dev
+apt-get install -y libpoppler-cpp-dev \
+  pandoc
 
 rm -rf /var/lib/apt/lists/*

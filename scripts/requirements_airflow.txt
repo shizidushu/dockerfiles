@@ -13,3 +13,4 @@ suds-py3
 suds-jurko
 typer
 pymssql
+pypandoc
