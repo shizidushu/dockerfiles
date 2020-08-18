@@ -8,7 +8,9 @@ RUN groupadd --gid 119 docker \
     # fix jdk https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199
     && mkdir -p /usr/share/man/man1 \
     && cd / \
-    && mkdir -p /tmp
+    && mkdir -p /tmp \
+    && apt-get update \
+    && apt-get install -y pandoc
 
 COPY scripts /shell_scripts
 RUN chmod -R +rx /shell_scripts
