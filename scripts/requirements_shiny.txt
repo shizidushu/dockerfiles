@@ -16,3 +16,4 @@ pdfplumber
 typer
 pypandoc
 jinjasql
+xlrd
