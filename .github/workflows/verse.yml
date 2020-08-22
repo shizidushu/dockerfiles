@@ -13,6 +13,6 @@ jobs:
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
       - name: Build the tagged Docker image
         run: | 
-             docker-compose -f compose/verse-4.0.0.yml build --build-arg GITHUB_PAT=${{ secrets.GITHUB_TOKEN }}
+             docker-compose -f compose/verse-4.0.0.yml build --build-arg GITHUB_PAT=${{ secrets.GITHHUB_ACCESS_TOKEN }}
       - name: Push the tagged Docker image
         run: docker-compose  -f compose/verse-4.0.0.yml push
