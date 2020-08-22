@@ -24,3 +24,4 @@ if(length(new_packages)) install.packages(new_packages, repo = 'https://cran.rst
 ## install.packages(attr(old.packages(), "dimnames")[[1]], repo = 'https://cran.rstudio.com/')
 
 remotes::install_github('bbc/bbplot')
+devtools::install_github("shizidushu/shinytvc")
