@@ -1,5 +1,7 @@
 FROM rocker/verse:4.0.0
 
+ARG GITHUB_PAT
+
 COPY scripts /shell_scripts
 RUN chmod -R +rx /shell_scripts
 
