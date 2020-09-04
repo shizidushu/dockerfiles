@@ -27,3 +27,5 @@ if(length(new_packages)) install.packages(new_packages, quiet = TRUE)
 
 # update old packages
 ## install.packages(attr(old.packages(), "dimnames")[[1]], repo = 'https://cran.rstudio.com/')
+
+devtools::install_github("rmcelreath/rethinking",ref="Experimental")
