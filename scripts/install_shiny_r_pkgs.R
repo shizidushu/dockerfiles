@@ -10,7 +10,7 @@ if (!require(remotes)) {
 if (!require(devtools)) install.packages("devtools", repo = 'https://cran.rstudio.com/')
 
 # -shiny
-list_of_packages <- c("promises", "shinydashboard", "shinyWidgets",  "shinyjs", "shinyTime", "listviewer", "gt", "reactable", "pdftools", "shinydisconnect", "waiter", "shinyFeedback")
+list_of_packages <- c("promises", "shinydashboard", "shinyWidgets",  "shinyjs", "shinyTime", "listviewer", "gt", "reactable", "pdftools", "shinydisconnect", "waiter", "shinyFeedback", "V8")
 
 # dput(sort(unique(list_of_packages)))
 
