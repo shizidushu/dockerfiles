@@ -10,7 +10,7 @@ if (!require(remotes)) {
 if (!require(devtools)) install.packages("devtools", repo = 'https://cran.rstudio.com/')
 
 # -shiny
-list_of_packages <- c("shiny", "promises", "shinydashboard", "shinyWidgets",  "shinyjs", "shinyTime", "listviewer", "gt", "reactable", "pdftools", "shinydisconnect", "waiter", "shinyFeedback", "V8")
+list_of_packages <- c("promises", "shinydashboard", "shinyWidgets",  "shinyjs", "shinyTime", "listviewer", "gt", "reactable", "pdftools", "shinydisconnect", "waiter", "shinyFeedback", "V8")
 
 # dput(sort(unique(list_of_packages)))
 
@@ -18,6 +18,7 @@ list_of_packages <- unique(list_of_packages)
 
 new_packages <- list_of_packages[! list_of_packages %in% installed.packages()[,"Package"] ]
 
+install.packages("shiny", repo = 'https://cran.rstudio.com/')
 if(length(new_packages)) install.packages(new_packages, repo = 'https://cran.rstudio.com/')
 
 # update old packages
