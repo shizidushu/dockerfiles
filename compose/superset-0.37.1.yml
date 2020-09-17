@@ -1,0 +1,7 @@
+version: '3'
+services:
+  superset_0.37.1:
+    image: shizidushu/superset:0.37.1
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile_superset_0.37.1
