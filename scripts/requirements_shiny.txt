@@ -1,5 +1,4 @@
 bcrypt
-client
 docker
 flask-bcrypt
 numpy
@@ -9,11 +8,8 @@ pyodbc
 requests
 scipy
 sqlalchemy
-suds-py3
-suds-jurko
 openpyxl
 pdfplumber
-typer
 pypandoc
 jinjasql
 xlrd
