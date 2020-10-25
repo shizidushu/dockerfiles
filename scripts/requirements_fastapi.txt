@@ -21,3 +21,5 @@ openpyxl
 pdfplumber
 psycopg2-binary
 aiocache[redis]
+altair
+vega_datasets
