@@ -24,3 +24,4 @@ aiocache[redis]
 altair
 vega_datasets
 plotly
+nltk
