@@ -26,3 +26,4 @@ vega_datasets
 plotly
 nltk
 beautifulsoup4
+Pillow
