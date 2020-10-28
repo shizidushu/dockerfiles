@@ -25,4 +25,4 @@ altair
 vega_datasets
 plotly
 nltk
-python3-bs4
+beautifulsoup4
