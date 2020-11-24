@@ -18,6 +18,7 @@ pypandoc
 jinjasql
 pandas
 openpyxl
+xlrd
 pdfplumber
 psycopg2-binary
 aiocache[redis]
