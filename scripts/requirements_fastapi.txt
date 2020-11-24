@@ -28,3 +28,4 @@ plotly
 nltk
 beautifulsoup4
 Pillow
+jupyterlab
