@@ -1,6 +1,5 @@
 apache-airflow[microsoft.winrm]
 bcrypt
-client
 docker
 flask-bcrypt
 numpy
