@@ -17,6 +17,7 @@ pyodbc
 pypandoc
 jinjasql
 pandas
+XlsxWriter
 openpyxl
 xlrd
 pdfplumber
