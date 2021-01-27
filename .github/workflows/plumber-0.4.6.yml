@@ -1,4 +1,4 @@
-name: Build & Push Plumber images 
+name: Build & Push Plumber 0.4.6 images 
 
 on: [push]
 #  release:
