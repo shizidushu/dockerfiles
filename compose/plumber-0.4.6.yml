@@ -1,0 +1,7 @@
+version: '3'
+services:
+  plumber-0.4.6:
+    image: shizidushu/plumber:0.4.6
+    build:
+      context: ..
+      dockerfile: dockerfiles/dockerfile_plumber_0.4.6

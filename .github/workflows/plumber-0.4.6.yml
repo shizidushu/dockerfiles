@@ -13,6 +13,6 @@ jobs:
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
       - name: Build the tagged Docker image
         run: | 
-             docker-compose -f compose/plumber-4.0.0.yml build 
+             docker-compose -f compose/plumber-0.4.6.yml build 
       - name: Push the tagged Docker image
-        run: docker-compose  -f compose/plumber-4.0.0.yml push
+        run: docker-compose  -f compose/plumber-0.4.6.yml push

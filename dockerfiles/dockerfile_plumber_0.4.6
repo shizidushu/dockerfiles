@@ -1,0 +1,29 @@
+FROM rocker/r-ver:4.0.0
+
+
+COPY scripts /shell_scripts
+RUN chmod -R +rx /shell_scripts
+
+
+RUN /shell_scripts/install_sys_deps.sh
+
+
+# ENV JULIA_PATH /usr/local/julia
+# ENV PATH $JULIA_PATH/bin:$PATH
+# RUN /shell_scripts/install_julia.sh
+
+RUN /rocker_scripts/install_tidyverse.sh
+RUN /rocker_scripts/install_python.sh
+
+
+
+
+RUN /shell_scripts/install_mssql_driver.sh
+
+
+RUN Rscript /shell_scripts/install_basic_r_pkgs.R
+
+RUN Rscript -e "remotes::install_github('rstudio/plumber@0.4.6')"
+
+## run R plumber with the last supplied CMD as supplied file
+ENTRYPOINT ["R", "-e", "pr <- plumber::plumb(rev(commandArgs())[1]); args <- list(host = '0.0.0.0', port = 8000); if (packageVersion('plumber') >= '1.0.0') { pr$setDocs(TRUE) } else { args$swagger <- TRUE }; do.call(pr$run, args)"]
