@@ -1,4 +1,4 @@
-name: Build & Push fastapi 0.60.2 images 
+name: Build & Push fastapi python3.8 images 
 
 on: [push]
 #  release:
@@ -13,6 +13,6 @@ jobs:
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
       - name: Build the tagged Docker image
         run: | 
-             docker-compose -f compose/fastapi-0.60.2.yml build 
+             docker-compose -f compose/fastapi-python3.8.yml build 
       - name: Push the tagged Docker image
-        run: docker-compose  -f compose/fastapi-0.60.2.yml push
+        run: docker-compose  -f compose/fastapi-python3.8.yml push
