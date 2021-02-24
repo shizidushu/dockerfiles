@@ -30,3 +30,5 @@ nltk
 beautifulsoup4
 Pillow
 jupyterlab
+pandarallel
+pendulum
