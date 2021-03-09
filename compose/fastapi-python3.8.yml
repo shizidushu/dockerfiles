@@ -1,0 +1,7 @@
+version: '3'
+services:
+  fastapi-python3.8:
+    image: shizidushu/fastapi:python3.8
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile_fastapi_python3.8
