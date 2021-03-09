@@ -30,3 +30,4 @@ nltk
 beautifulsoup4
 Pillow
 jupyterlab
+loguru
