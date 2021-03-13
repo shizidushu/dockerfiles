@@ -30,6 +30,7 @@ nltk
 beautifulsoup4
 Pillow
 jupyterlab
+loguru
 pandarallel
 pendulum
 fastapi_utils
