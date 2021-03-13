@@ -17,6 +17,7 @@ pypandoc
 orjson
 awswrangler
 boto3
+pydantic
 apache-airflow-providers-dingding
 apache-airflow-providers-amazon
 apache-airflow-providers-microsoft-winrm
