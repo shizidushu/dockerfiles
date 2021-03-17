@@ -18,6 +18,8 @@ RUN chmod -R +rx /shell_scripts
 # RUN /shell_scripts/install_r.sh
 
 RUN /shell_scripts/install_sys_deps.sh
+RUN R CMD javareconf
+
 RUN /shell_scripts/install_mssql_driver.sh
 
 

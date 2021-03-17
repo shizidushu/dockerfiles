@@ -41,8 +41,6 @@ apt-get update -qq \
     libgconf-2-4 \
     libpcre2-dev \
     wget
-  
-R CMD javareconf
 
 apt-get install -y libpoppler-cpp-dev
 

@@ -6,6 +6,7 @@ RUN chmod -R +rx /shell_scripts
 
 
 RUN /shell_scripts/install_sys_deps.sh
+RUN R CMD javareconf
 
 
 # ENV JULIA_PATH /usr/local/julia
