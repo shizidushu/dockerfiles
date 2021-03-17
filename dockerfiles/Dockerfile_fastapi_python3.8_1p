@@ -1,0 +1,46 @@
+FROM python:3.8
+
+
+RUN pip install --no-cache-dir "uvicorn[standard]" gunicorn
+
+COPY scripts/fastapi/start.sh /start.sh
+RUN chmod +x /start.sh
+
+COPY scripts/fastapi/gunicorn_conf.py /gunicorn_conf.py
+
+COPY scripts/fastapi/start-reload.sh /start-reload.sh
+RUN chmod +x /start-reload.sh
+
+COPY scripts/fastapi/app /app
+WORKDIR /app/
+
+ENV PYTHONPATH=/app
+
+
+COPY scripts /shell_scripts
+RUN chmod -R +rx /shell_scripts
+
+# install SQL Server drivers and tools
+### https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server    
+### https://github.com/Microsoft/mssql-docker/blob/master/linux/mssql-tools/Dockerfile
+
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+  && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list > /etc/apt/sources.list.d/mssql-release.list \
+  && apt-get update \
+  && ACCEPT_EULA=Y apt-get -y install msodbcsql17 \
+  && ACCEPT_EULA=Y apt-get -y install mssql-tools
+
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    pandoc \
+    unixodbc-dev \
+    g++ \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/
+
+RUN pip3 install --no-cache-dir -I -r /shell_scripts/requirements_fastapi.txt
+
+
+EXPOSE 8888
+EXPOSE 80
