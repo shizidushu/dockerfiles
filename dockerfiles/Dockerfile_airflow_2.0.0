@@ -10,7 +10,7 @@ RUN groupadd --gid 119 docker \
     && cd / \
     && mkdir -p /tmp \
     && apt-get update \
-    && apt-get install -y pandoc
+    && apt-get install -y pandoc g++
 
 COPY scripts /shell_scripts
 RUN chmod -R +rx /shell_scripts
