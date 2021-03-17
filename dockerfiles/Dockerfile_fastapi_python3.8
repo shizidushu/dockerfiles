@@ -23,7 +23,7 @@ RUN apt-get update \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/
 
-RUN pip3 install -r /shell_scripts/requirements_fastapi.txt
+RUN pip3 install -I -r /shell_scripts/requirements_fastapi.txt
 
 
 # For development, Jupyter remote kernel, Hydrogen
