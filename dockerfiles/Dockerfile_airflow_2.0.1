@@ -22,6 +22,7 @@ RUN /shell_scripts/install_mssql_driver.sh
 
 
 RUN pip3 install -I -r /shell_scripts/requirements_airflow_v2.txt
+RUN pip uninstall --yes azure-storage && pip install -U azure-storage-blob apache-airflow-providers-microsoft-azure==1.1.0
 
 
 # ENV JULIA_PATH /usr/local/julia
