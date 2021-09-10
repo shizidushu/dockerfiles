@@ -1,0 +1,7 @@
+version: '3'
+services:
+  airflow-2.1.3:
+    image: shizidushu/airflow:2.1.3
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile_airflow_2.1.3
