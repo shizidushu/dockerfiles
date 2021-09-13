@@ -88,7 +88,7 @@ ptyprocess==0.7.0
 pyasn1==0.4.8
 pycparser==2.20
 pycryptodome==3.10.1
-pydantic==1.8.1
+pydantic==1.8.2
 Pygments==2.8.1
 pyodbc==4.0.30
 pypandoc==1.5
