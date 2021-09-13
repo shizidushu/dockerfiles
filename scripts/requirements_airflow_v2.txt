@@ -1,4 +1,4 @@
-apache-airflow[microsoft.winrm]
+pydantic
 bcrypt
 docker
 flask-bcrypt
@@ -15,9 +15,8 @@ typer
 pymssql
 pypandoc
 orjson
-awswrangler==2.6.0
-boto3==1.15.18
-pydantic
+awswrangler
+apache-airflow[microsoft.winrm]
 apache-airflow-providers-dingding
 apache-airflow-providers-amazon
 apache-airflow-providers-microsoft-winrm
