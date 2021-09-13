@@ -14,7 +14,7 @@ bcrypt
 docker
 Flask-Bcrypt
 jinjasql
-mlxtend=
+mlxtend
 numpy
 orjson
 pandas
