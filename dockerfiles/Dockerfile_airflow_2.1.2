@@ -1,5 +1,8 @@
 FROM apache/airflow:2.1.2-python3.8
 
+
+ENV PATH='/root/.local/bin'/bin:$PATH
+
 USER root
 
 # keep group id same as host
@@ -23,7 +26,7 @@ RUN /shell_scripts/install_sys_deps.sh
 RUN /shell_scripts/install_mssql_driver.sh
 
 
-RUN pip3 install -r /shell_scripts/requirements_airflow_v2.1.2.txt
+RUN pip3 install  -I -r /shell_scripts/requirements_airflow_v2.1.2.txt
 # RUN pip uninstall --yes azure-storage && pip install -U azure-storage-blob apache-airflow-providers-microsoft-azure==1.1.0
 
 
