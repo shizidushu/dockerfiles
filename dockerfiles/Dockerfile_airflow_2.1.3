@@ -15,7 +15,7 @@ RUN groupadd --gid 119 docker \
 COPY scripts /shell_scripts
 RUN chmod -R +rx /shell_scripts
 
-RUN /shell_scripts/install_r.sh
+# RUN /shell_scripts/install_r.sh
 
 RUN /shell_scripts/install_sys_deps.sh
 RUN R CMD javareconf
@@ -24,7 +24,7 @@ RUN /shell_scripts/install_mssql_driver.sh
 
 
 RUN pip3 install -r /shell_scripts/requirements_airflow_v2.txt
-RUN pip uninstall --yes azure-storage && pip install -U azure-storage-blob apache-airflow-providers-microsoft-azure==1.1.0
+# RUN pip uninstall --yes azure-storage && pip install -U azure-storage-blob apache-airflow-providers-microsoft-azure==1.1.0
 
 
 # ENV JULIA_PATH /usr/local/julia
@@ -32,6 +32,6 @@ RUN pip uninstall --yes azure-storage && pip install -U azure-storage-blob apach
 # RUN /shell_scripts/install_julia.sh
 
 
-RUN Rscript /shell_scripts/install_basic_r_pkgs.R
+# RUN Rscript /shell_scripts/install_basic_r_pkgs.R
 
 USER airflow
