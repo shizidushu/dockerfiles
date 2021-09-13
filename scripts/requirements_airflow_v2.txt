@@ -15,8 +15,8 @@ typer
 pymssql
 pypandoc
 orjson
-awswrangler
-boto3
+awswrangler==2.6.0
+boto3==1.15.18
 pydantic
 apache-airflow-providers-dingding
 apache-airflow-providers-amazon
