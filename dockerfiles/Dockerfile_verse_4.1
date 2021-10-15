@@ -1,0 +1,25 @@
+FROM rocker/verse:4.1
+
+ARG GITHUB_PAT
+
+COPY scripts /shell_scripts
+RUN chmod -R +rx /shell_scripts
+
+RUN /shell_scripts/install_sys_deps.sh
+RUN R CMD javareconf
+
+RUN /shell_scripts/upgrade_to_rstudio_preview.sh
+
+ENV JULIA_PATH /usr/local/julia
+ENV PATH=$JULIA_PATH/bin:$PATH
+RUN /shell_scripts/install_julia.sh
+
+RUN /shell_scripts/install_mssql_driver.sh
+
+RUN /rocker_scripts/install_python.sh
+RUN pip3 install -r /shell_scripts/requirements_shiny.txt
+
+RUN /shell_scripts/install_haskell.sh
+RUN Rscript /shell_scripts/install_basic_r_pkgs.R
+RUN Rscript /shell_scripts/install_rstudio_r_pkgs.R
+RUN Rscript /shell_scripts/install_shiny_r_pkgs.R
