@@ -9,7 +9,11 @@ cat("\nCXX14FLAGS=-O3 -march=native -mtune=native -fPIC",
 Sys.setenv(MAKEFLAGS = paste0("-j", parallel::detectCores()))
 print(paste("MAKEFLAGS=", Sys.getenv("MAKEFLAGS")))
 
-install.packages("rstan", type = "source", quiet = TRUE)
+# install.packages("rstan", type = "source", quiet = TRUE)
+
+Sys.setenv(DOWNLOAD_STATIC_LIBV8 = 1) # only necessary for Linux without the nodejs library / headers
+install.packages("rstan", repos = "https://cloud.r-project.org/", dependencies = TRUE)
+
 
 
 # -rstudio
