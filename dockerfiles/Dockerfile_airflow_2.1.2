@@ -6,7 +6,7 @@ ENV PATH=/root/.local/bin:$PATH
 USER root
 
 # keep group id same as host
-RUN groupadd --gid 119 docker \
+RUN groupadd --gid 998 docker \
     && usermod -aG docker airflow \
     && usermod -u 1000 airflow \
     # fix jdk https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199
