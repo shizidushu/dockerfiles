@@ -215,5 +215,6 @@ websocket-client==1.1.0
 Werkzeug==1.0.1
 WTForms==2.3.3
 XlsxWriter==3.0.1
+python-dotenv==0.19.1
 great_expectations
 airflow-provider-great-expectations
