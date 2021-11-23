@@ -1,6 +1,6 @@
 version: "3"
 services:
-  airflow-2.2.0:
+  airflow-2.2.2:
     image: shizidushu/airflow:2.2.2
     build:
       context: ..
