@@ -14,7 +14,7 @@ apache-airflow-providers-sendgrid
 apache-airflow-providers-sftp
 apache-airflow-providers-ssh
 awswrangler
-beautifulsoup4==4.10.0
+beautifulsoup4
 boto3
 botocore
 pandas
@@ -29,3 +29,4 @@ suds-py3
 typer
 python-dotenv
 great_expectations
+orjson
