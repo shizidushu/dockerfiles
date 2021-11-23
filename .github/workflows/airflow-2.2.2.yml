@@ -1,4 +1,4 @@
-name: Build & Push Airflow 2.2.0 images
+name: Build & Push Airflow 2.2.2 images
 
 on: [push]
 #  release:
@@ -13,6 +13,6 @@ jobs:
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
       - name: Build the tagged Docker image
         run: |
-          docker-compose -f compose/airflow-2.2.0.yml build
+          docker-compose -f compose/airflow-2.2.2.yml build
       - name: Push the tagged Docker image
-        run: docker-compose  -f compose/airflow-2.2.0.yml push
+        run: docker-compose  -f compose/airflow-2.2.2.yml push
